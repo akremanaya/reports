@@ -166,6 +166,9 @@ dependencies {
     compile ("net.logstash.logback:logstash-logback-encoder:${logstash_logback_encoder_version}") {
         exclude(group: 'ch.qos.logback')
     }
+    compile "com.lowagie:itext:${itext_version}"
+    compile "org.olap4j:olap4j:${olap4j_version}"
+    compile "net.sf.jasperreports:jasperreports:${jasper_version}"
     compile "com.sun.jersey.contribs:jersey-apache-client:${apache_client_version}"
     compile "com.sun.jersey:jersey-client:${jersey_client_version}"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-json-org"

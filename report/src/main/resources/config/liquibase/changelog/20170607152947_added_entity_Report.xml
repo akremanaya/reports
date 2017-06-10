@@ -53,5 +53,9 @@
         </createTable>
         <dropDefaultValue tableName="report" columnName="lastmodifieddatetime" columnDataType="datetime"/>
         
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/reports_adap_0.csv"
+                  separator=","
+                  tableName="report"/> 
     </changeSet>
 </databaseChangeLog>
