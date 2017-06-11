@@ -1,0 +1,5 @@
+"id","label","instructions","datatype",required,minlength,maxlength,"validation","status","domain","lastmodifiedby","lastmodifieddatetime","report_id"
+501,"login","Please Enter User Login for ADAP Application","text","true","4","11","{""required"":""true"" ,""minlength"": ""5"",""maxlength"":""10""}","Active","DEMO","echasin","2015-01-01",500
+601,"Createddate","Search for users created after this date","date","true","4","11","{""required"":""true"" ,""minlength"": ""5"",""maxlength"":""10""}","Active","DEMO","echasin","2015-01-01",600
+701,"login","Please Enter User Login for ADAP Application","text","true","4","11","{""required"":""true"" ,""minlength"": ""5"",""maxlength"":""10""}","Active","DEMO","echasin","2015-01-01",700
+702,"Createddate","Search for users created after this date","date","true","4","11","{""required"":""true"" ,""minlength"": ""5"",""maxlength"":""10""}","Active","DEMO","echasin","2015-01-01",700

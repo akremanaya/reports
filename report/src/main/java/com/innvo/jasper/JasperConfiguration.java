@@ -12,35 +12,84 @@ import org.springframework.stereotype.Component;
 public class JasperConfiguration {
 	
 	
-	private String serverUrl;
+    private String serverUrl;
 	
 	private String serverUser;
     
 	private String serverPassword;
 	
+	private String jrxmlpath;
 	
-    public String getServerUrl() {
+	private String reportpath;
+	
+	private String reportingengine;
+	
+	private String accessKey;
+	
+    private String secretAcessKey;
+
+	public String getServerUrl() {
 		return serverUrl;
 	}
-	
-    public void setServerUrl(String serverUrl) {
+
+	public void setServerUrl(String serverUrl) {
 		this.serverUrl = serverUrl;
 	}
-	
-    public String getServerUser() {
+
+	public String getServerUser() {
 		return serverUser;
 	}
-	
-    public void setServerUser(String serverUser) {
+
+	public void setServerUser(String serverUser) {
 		this.serverUser = serverUser;
 	}
-	
-    public String getServerPassword() {
+
+	public String getServerPassword() {
 		return serverPassword;
 	}
-	
-    public void setServerPassword(String serverPassword) {
+
+	public void setServerPassword(String serverPassword) {
 		this.serverPassword = serverPassword;
+	}
+
+	public String getJrxmlpath() {
+		return jrxmlpath;
+	}
+
+	public void setJrxmlpath(String jrxmlpath) {
+		this.jrxmlpath = jrxmlpath;
+	}
+
+	public String getReportpath() {
+		return reportpath;
+	}
+
+	public void setReportpath(String reportpath) {
+		this.reportpath = reportpath;
+	}
+
+	public String getReportingengine() {
+		return reportingengine;
+	}
+
+	public void setReportingengine(String reportingengine) {
+		this.reportingengine = reportingengine;
+	}
+
+	public String getAccessKey() {
+		return accessKey;
+	}
+
+	public void setAccessKey(String accessKey) {
+		this.accessKey = accessKey;
+	}
+
+	public String getSecretAcessKey() {
+		return secretAcessKey;
+	}
+
+	public void setSecretAcessKey(String secretAcessKey) {
+		this.secretAcessKey = secretAcessKey;
 	}
 	
 }

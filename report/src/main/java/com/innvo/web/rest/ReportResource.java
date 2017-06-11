@@ -181,19 +181,12 @@ public class ReportResource {
     @GetMapping("/generateReport/{reportId}/{parameters}")
     @Timed
     public byte[] generateReport(@PathVariable("reportId") String reportId,
-        		                    @PathVariable("parameters") String parameters
-        		                 ) throws Exception {
-    	    Report report = reportRepository.findOne(Long.parseLong(reportId));
-    	    ObjectMapper mapper = new ObjectMapper();
-    	    List<Parameters> objects = mapper.readValue(parameters, new TypeReference<List<Parameters>>(){});
-            Map<String,String> map=new HashMap<String,String>();
-            for(Parameters param:objects){
-            	map.put(param.getKey(), param.getValue());
-            }
-            byte[] repo= generateReportFile.generateReport(report,map);
-            return repo;
-
-}
+            @PathVariable("parameters") String parameters) throws Exception {
+           Report report = reportRepository.findOne(Long.parseLong(reportId));
+           byte[] output=generateReportFile.generateReport(report, parameters);
+ 
+           return output;
+     }
 
     /**
      * 
