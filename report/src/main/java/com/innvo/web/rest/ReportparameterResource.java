@@ -5,12 +5,14 @@ import com.innvo.domain.Reportparameter;
 
 import com.innvo.repository.ReportparameterRepository;
 import com.innvo.repository.search.ReportparameterSearchRepository;
+import com.innvo.service.DomainService;
 import com.innvo.web.rest.util.HeaderUtil;
 import com.innvo.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -21,7 +23,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -44,6 +47,10 @@ public class ReportparameterResource {
 
     private final ReportparameterSearchRepository reportparameterSearchRepository;
 
+    @Autowired
+    DomainService domainService;
+    
+    
     public ReportparameterResource(ReportparameterRepository reportparameterRepository, ReportparameterSearchRepository reportparameterSearchRepository) {
         this.reportparameterRepository = reportparameterRepository;
         this.reportparameterSearchRepository = reportparameterSearchRepository;
@@ -63,6 +70,9 @@ public class ReportparameterResource {
         if (reportparameter.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new reportparameter cannot already have an ID")).body(null);
         }
+        ZonedDateTime lastmodifieddate = ZonedDateTime.now(ZoneId.systemDefault());
+        reportparameter.setLastmodifieddatetime(lastmodifieddate);
+        reportparameter.setDomain(domainService.getDomain());
         Reportparameter result = reportparameterRepository.save(reportparameter);
         reportparameterSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/reportparameters/" + result.getId()))
@@ -86,6 +96,9 @@ public class ReportparameterResource {
         if (reportparameter.getId() == null) {
             return createReportparameter(reportparameter);
         }
+        ZonedDateTime lastmodifieddate = ZonedDateTime.now(ZoneId.systemDefault());
+        reportparameter.setLastmodifieddatetime(lastmodifieddate);
+        reportparameter.setDomain(domainService.getDomain());
         Reportparameter result = reportparameterRepository.save(reportparameter);
         reportparameterSearchRepository.save(result);
         return ResponseEntity.ok()

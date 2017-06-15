@@ -51,20 +51,19 @@ public class Reportparameter implements Serializable {
     @Column(name = "validation")
     private String validation;
 
-    @NotNull
+    
     @Column(name = "status", nullable = false)
     private String status;
 
-    @NotNull
+    
     @Column(name = "lastmodifiedby", nullable = false)
     private String lastmodifiedby;
 
-    @NotNull
+    
     @Column(name = "domain", nullable = false)
     private String domain;
 
-    @NotNull
-    @Column(name = "lastmodifieddatetime", nullable = false)
+    @Column(name = "lastmodifieddatetime")
     private ZonedDateTime lastmodifieddatetime;
 
     @ManyToOne

@@ -11,6 +11,7 @@ import com.innvo.jasper.Validation;
 import com.innvo.repository.ReportRepository;
 import com.innvo.repository.ReportparameterRepository;
 import com.innvo.repository.search.ReportSearchRepository;
+import com.innvo.service.DomainService;
 import com.innvo.web.rest.util.HeaderUtil;
 import com.innvo.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -28,6 +29,8 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -59,6 +62,10 @@ public class ReportResource {
     @Inject
     GenerateReportFile generateReportFile; 
     
+    
+    @Inject
+    DomainService domainService;
+    
     public ReportResource(ReportRepository reportRepository, ReportSearchRepository reportSearchRepository) {
         this.reportRepository = reportRepository;
         this.reportSearchRepository = reportSearchRepository;
@@ -78,6 +85,9 @@ public class ReportResource {
         if (report.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new report cannot already have an ID")).body(null);
         }
+        ZonedDateTime lastmodifieddate = ZonedDateTime.now(ZoneId.systemDefault());
+        report.setLastmodifieddatetime(lastmodifieddate);
+        report.setDomain(domainService.getDomain());
         Report result = reportRepository.save(report);
         reportSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/reports/" + result.getId()))
@@ -101,6 +111,9 @@ public class ReportResource {
         if (report.getId() == null) {
             return createReport(report);
         }
+        ZonedDateTime lastmodifieddate = ZonedDateTime.now(ZoneId.systemDefault());
+        report.setLastmodifieddatetime(lastmodifieddate);
+        report.setDomain(domainService.getDomain());
         Report result = reportRepository.save(report);
         reportSearchRepository.save(result);
         return ResponseEntity.ok()

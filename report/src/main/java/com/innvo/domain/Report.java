@@ -41,19 +41,16 @@ public class Report implements Serializable {
     @Column(name = "reportoutputtypecode", nullable = false)
     private String reportoutputtypecode;
 
-    @NotNull
+    
     @Column(name = "status", nullable = false)
     private String status;
 
-    @NotNull
     @Column(name = "lastmodifiedby", nullable = false)
     private String lastmodifiedby;
 
-    @NotNull
-    @Column(name = "lastmodifieddatetime", nullable = false)
+    @Column(name = "lastmodifieddatetime")
     private ZonedDateTime lastmodifieddatetime;
 
-    @NotNull
     @Column(name = "domain", nullable = false)
     private String domain;
 
